@@ -1,6 +1,6 @@
-namespace CarInsurance.API.Models;
-
 using System.ComponentModel.DataAnnotations;
+
+namespace CarInsurance.Core.Models.Settings.Auth;
 
 public class AuthenticateRequest
 {

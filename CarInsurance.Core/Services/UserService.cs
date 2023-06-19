@@ -1,23 +1,18 @@
-using CarInsurance.API.Models;
+using CarInsurance.Core.Interfaces;
+using CarInsurance.Core.Models.Settings.Auth;
+using CarInsurance.Core.Models.Users;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace CarInsurance.API;
-
-public interface IUserService
-{
-    AuthenticateResponse Authenticate(AuthenticateRequest model);
-    IEnumerable<User> GetAll();
-    User GetById(int id);
-}
+namespace CarInsurance.Core.Services;
 
 public class UserService : IUserService
 {
     // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-    private List<User> _users = new List<User>
+    private readonly List<User> _users = new()
     {
       new User {
         Id = 1,
@@ -43,7 +38,7 @@ public class UserService : IUserService
         if (user == null) return null!;
 
         // authentication successful so generate jwt token
-        var token = generateJwtToken(user);
+        var token = GenerateJwtToken(user);
 
         return new AuthenticateResponse(user, token);
     }
@@ -69,7 +64,7 @@ public class UserService : IUserService
 
     // helper methods
 
-    private string generateJwtToken(User user)
+    private string GenerateJwtToken(User user)
     {
         // generate token that is valid for 7 days
         var tokenHandler = new JwtSecurityTokenHandler();

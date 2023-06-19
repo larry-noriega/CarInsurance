@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CarInsurance.API;
+namespace CarInsurance.Core.Models.Users;
 
 public class User
 {

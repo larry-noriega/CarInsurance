@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using CarInsurance.API.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using CarInsurance.Core.Interfaces;
+using CarInsurance.Core.Models.Settings.Auth;
 
 namespace CarInsurance.API.Controllers;
 

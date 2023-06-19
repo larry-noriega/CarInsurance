@@ -1,4 +1,4 @@
-﻿namespace CarInsurance.API;
+﻿namespace CarInsurance.Core.Models.Settings.Auth;
 
 public class AppSettings
 {

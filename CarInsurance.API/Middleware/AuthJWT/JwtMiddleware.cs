@@ -1,9 +1,11 @@
-﻿using Microsoft.Extensions.Options;
+﻿using CarInsurance.Core.Interfaces;
+using CarInsurance.Core.Models.Settings.Auth;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
-namespace CarInsurance.API;
+namespace CarInsurance.API.Middleware.AuthJWT;
 
 public class JwtMiddleware
 {
@@ -20,13 +22,12 @@ public class JwtMiddleware
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-        if (token != null)
-            attachUserToContext(context, userService, token);
+        if (token is not null) AttachUserToContext(context, userService, token);
 
         await _next(context);
     }
 
-    private void attachUserToContext(HttpContext context, IUserService userService, string token)
+    private void AttachUserToContext(HttpContext context, IUserService userService, string token)
     {
         try
         {

@@ -1,4 +1,6 @@
-﻿namespace CarInsurance.API;
+﻿using CarInsurance.Core.Models.Users;
+
+namespace CarInsurance.Core.Models.Settings.Auth;
 
 public class AuthenticateResponse
 {

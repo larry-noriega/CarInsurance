@@ -1,5 +1,7 @@
-using CarInsurance.API;
+using CarInsurance.API.Middleware.AuthJWT;
+using CarInsurance.Core.Interfaces;
 using CarInsurance.Core.Models.Settings;
+using CarInsurance.Core.Models.Settings.Auth;
 using CarInsurance.Core.Services;
 using Microsoft.OpenApi.Models;
 
@@ -16,7 +18,7 @@ builder.Services.AddControllers()
         options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 builder.Services.AddSwaggerGen(option =>
 {
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -39,22 +41,18 @@ builder.Services.AddSwaggerGen(option =>
             Id="Bearer"
           }
         },
-        new string[]{}
+        Array.Empty<string>()
       }
     });
 });
 
-{
-    var services = builder.Services;
-    services.AddCors();
-    services.AddControllers();
+builder.Services.AddCors();
 
-    // configure strongly typed settings object
-    services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+// configure strongly typed settings object
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
-    // configure DI for application services
-    services.AddScoped<IUserService, UserService>();
-}
+// configure DI for application services
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
