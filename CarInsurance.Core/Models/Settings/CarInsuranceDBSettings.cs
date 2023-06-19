@@ -1,6 +1,6 @@
-﻿namespace CarInsurance.API.Models.Settings;
+﻿namespace CarInsurance.Core.Models.Settings;
 
-public class CarPoliciesDatabaseSettings
+public class CarInsuranceDBSettings
 {
     public string ConnectionString { get; set; } = null!;
 

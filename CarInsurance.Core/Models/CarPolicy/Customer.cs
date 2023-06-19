@@ -1,4 +1,4 @@
-﻿namespace CarInsurance.API.Models;
+﻿namespace CarInsurance.Core.Models.CarPolicy;
 
 public class Customer
 {

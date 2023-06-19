@@ -1,17 +1,16 @@
-﻿
-using CarInsurance.API.Models;
-using CarInsurance.API.Models.Settings;
+﻿using CarInsurance.Core.Models.CarPolicy;
+using CarInsurance.Core.Models.Settings;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System.Diagnostics;
 
-namespace CarInsurance.API;
+namespace CarInsurance.Core.Services;
 
 public class CarPoliciesService
 {
-    private readonly IMongoCollection<CarPolicy> _carPolicyCollection;
+    private readonly IMongoCollection<CarPolicyModel> _carPolicyCollection;
     
-    public CarPoliciesService(IOptions<CarPoliciesDatabaseSettings> carPolicyDatabaseSettings)
+    public CarPoliciesService(IOptions<CarInsuranceDBSettings> carPolicyDatabaseSettings)
     {
         var stringConnection = carPolicyDatabaseSettings.Value.ConnectionString;
 
@@ -21,19 +20,19 @@ public class CarPoliciesService
 
         IMongoDatabase? mongoDatabase = mongoClient.GetDatabase( carPolicyDatabaseSettings.Value.DatabaseName );
 
-        _carPolicyCollection = mongoDatabase.GetCollection<CarPolicy>( carPolicyDatabaseSettings.Value.CarPolicyCollectionName );
+        _carPolicyCollection = mongoDatabase.GetCollection<CarPolicyModel>( carPolicyDatabaseSettings.Value.CarPolicyCollectionName );
     }
 
-    public async Task<List<CarPolicy>> GetAsync() =>
+    public async Task<List<CarPolicyModel>> GetAsync() =>
         await _carPolicyCollection.Find(_ => true).ToListAsync();
 
-    public async Task<CarPolicy?> GetAsync(string id) =>
+    public async Task<CarPolicyModel?> GetAsync(string id) =>
         await _carPolicyCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-    public async Task CreateAsync(CarPolicy carPolicy) =>
+    public async Task CreateAsync(CarPolicyModel carPolicy) =>
         await _carPolicyCollection.InsertOneAsync(carPolicy);
 
-    public async Task UpdateAsync(string id, CarPolicy updatedCarPolicy) =>
+    public async Task UpdateAsync(string id, CarPolicyModel updatedCarPolicy) =>
         await _carPolicyCollection.ReplaceOneAsync(x => x.Id == id, updatedCarPolicy);
 
     public async Task RemoveAsync(string id) =>

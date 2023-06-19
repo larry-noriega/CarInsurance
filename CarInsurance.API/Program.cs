@@ -1,10 +1,10 @@
-using CarInsurance.API;
-using CarInsurance.API.Models.Settings;
+using CarInsurance.Core.Models.Settings;
+using CarInsurance.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.Configure<CarPoliciesDatabaseSettings>(
+builder.Services.Configure<CarInsuranceDBSettings>(
     builder.Configuration.GetSection("InsurancePoliciesDatabase") );
 
 builder.Services.AddSingleton<CarPoliciesService>();

@@ -1,4 +1,5 @@
-﻿using CarInsurance.API.Models;
+﻿using CarInsurance.Core.Models.CarPolicy;
+using CarInsurance.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarInsurance.API.Controllers;
@@ -15,11 +16,11 @@ public class CarPolicyController : Controller
 
 
     [HttpGet]
-    public async Task<List<CarPolicy>> Get() =>
+    public async Task<List<CarPolicyModel>> Get() =>
         await _carPolicyService.GetAsync();
 
     [HttpGet("{id:length(24)}")]
-    public async Task<ActionResult<CarPolicy>> Get(string id)
+    public async Task<ActionResult<CarPolicyModel>> Get(string id)
     {
         var result = await _carPolicyService.GetAsync(id);
 
@@ -29,7 +30,7 @@ public class CarPolicyController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(CarPolicy newCarPolicy)
+    public async Task<IActionResult> Post(CarPolicyModel newCarPolicy)
     {
         await _carPolicyService.CreateAsync(newCarPolicy);
 
@@ -37,7 +38,7 @@ public class CarPolicyController : Controller
     }
 
     [HttpPut("{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, CarPolicy updatedPolicy)
+    public async Task<IActionResult> Update(string id, CarPolicyModel updatedPolicy)
     {
         var result = await _carPolicyService.GetAsync(id);
 
