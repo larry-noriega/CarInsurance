@@ -21,7 +21,7 @@ public class CarPoliciesService
     }
 
     private void RemovePolicies() => _context.CarInsurance.DeleteMany(_ => true);
-    private void CreatePolicies(Policy[] policies) => _context.CarInsurance.InsertMany(policies);
+    private void CreatePolicies(List<Policy> policies) => _context.CarInsurance.InsertMany(policies);
 
     public static List<Policy> InitialData()
     {
