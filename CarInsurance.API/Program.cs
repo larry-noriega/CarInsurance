@@ -3,6 +3,8 @@ using CarInsurance.Core.Interfaces;
 using CarInsurance.Core.Models.Settings;
 using CarInsurance.Core.Models.Settings.Auth;
 using CarInsurance.Core.Services;
+using CarInsurance.Infrastructure.Data;
+using CarInsurance.Infrastructure.Data.Context;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +55,10 @@ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSet
 
 // configure DI for application services
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICarInsuranceRepository, CarInsuranceRepository>();
+
+// sigleton for settings
+builder.Services.AddTransient<ICarInsuranceContext, CarInsuranceContext>();
 
 var app = builder.Build();
 

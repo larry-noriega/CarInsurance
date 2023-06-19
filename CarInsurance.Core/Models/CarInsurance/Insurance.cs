@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace CarInsurance.Core.Models.CarPolicy;
+namespace CarInsurance.Core.Models.CarInsurance;
 
 public class Insurance
 {
