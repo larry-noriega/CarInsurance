@@ -1,4 +1,4 @@
-﻿namespace CarInsurance.API.Models;
+﻿namespace CarInsurance.Core.Models.CarInsurance;
 
 public class Car
 {

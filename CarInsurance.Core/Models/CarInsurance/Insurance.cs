@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson;
+﻿using CarInsurance.Core.Models.CarInsurance;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace CarInsurance.API.Models;
+namespace CarInsurance.Core.Models.CarPolicy;
 
-public class CarPolicy
+public class Insurance
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -11,9 +12,9 @@ public class CarPolicy
 
     public decimal Number { get; set; }
 
-    public DateTime CreationDate { get; set;}
+    public DateTime CreationDate { get; set; }
 
-    public DateTime ExpirationDate { get; set;}
+    public DateTime ExpirationDate { get; set; }
 
     public decimal Amount { get; set; }
 
