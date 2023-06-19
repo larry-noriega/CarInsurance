@@ -1,8 +1,9 @@
-﻿using CarInsurance.Core.Models.CarPolicy;
+﻿using CarInsurance.Core.Models.CarInsurance;
 using CarInsurance.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 using CarInsurance.API.Middleware.AuthJWT.Helpers;
+using CarInsurance.Core.Interfaces;
 
 namespace CarInsurance.API.Controllers;
 
@@ -11,19 +12,22 @@ namespace CarInsurance.API.Controllers;
 [Route("api/[controller]")]
 public class CarInsuranceController : Controller
 {
-    private readonly CarInsuranceService _carInsuranceService;
+    //private readonly CarInsuranceService _carInsuranceService;
+    private readonly ICarInsuranceRepository _repository;
 
-    public CarInsuranceController(CarInsuranceService carInsuranceService) =>
-        _carInsuranceService = carInsuranceService;
+    public CarInsuranceController(ICarInsuranceRepository repository) => _repository = repository;
+
+    //public CarInsuranceController(CarInsuranceService carInsuranceService) =>
+    //    _carInsuranceService = carInsuranceService;
 
     [HttpGet]
     public async Task<List<Insurance>> Get() =>
-        await _carInsuranceService.GetAsync();
+        await _repository.GetAsync();
 
     [HttpGet("{id:length(24)}")]
     public async Task<ActionResult<Insurance>> Get(string id)
     {
-        var result = await _carInsuranceService.GetAsync(id);
+        var result = await _repository.GetAsync(id);
 
         if (result is null) return NotFound();
 
@@ -33,7 +37,7 @@ public class CarInsuranceController : Controller
     [HttpPost]
     public async Task<IActionResult> Post(Insurance newCarInsurance)
     {
-        await _carInsuranceService.CreateAsync(newCarInsurance);
+        await _repository.CreateAsync(newCarInsurance);
 
         return CreatedAtAction(nameof(Get), new { id = newCarInsurance.Id }, newCarInsurance);
     }
@@ -41,13 +45,13 @@ public class CarInsuranceController : Controller
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, Insurance updatedCarInsurance)
     {
-        var result = await _carInsuranceService.GetAsync(id);
+        var result = await _repository.GetAsync(id);
 
         if (result is null)return NotFound();
 
         updatedCarInsurance.Id = result.Id;
 
-        await _carInsuranceService.UpdateAsync(id, updatedCarInsurance);
+        await _repository.UpdateAsync(id, updatedCarInsurance);
 
         return NoContent();
     }
@@ -55,11 +59,11 @@ public class CarInsuranceController : Controller
     [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
-        var result = await _carInsuranceService.GetAsync(id);
+        var result = await _repository.GetAsync(id);
         
         if (result is null) return NotFound();
 
-        await _carInsuranceService.RemoveAsync(id);
+        await _repository.RemoveAsync(id);
 
         return NoContent();
     }

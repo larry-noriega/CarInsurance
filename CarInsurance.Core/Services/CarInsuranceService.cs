@@ -1,4 +1,4 @@
-﻿using CarInsurance.Core.Models.CarPolicy;
+﻿using CarInsurance.Core.Models.CarInsurance;
 using CarInsurance.Core.Models.Settings;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
