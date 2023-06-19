@@ -1,9 +1,11 @@
 ﻿using CarInsurance.Core.Models.CarPolicy;
 using CarInsurance.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarInsurance.API.Controllers;
 
+[Authorize]
 [Controller]
 [Route("api/[controller]")]
 public class CarInsuranceController : Controller
@@ -12,7 +14,6 @@ public class CarInsuranceController : Controller
 
     public CarInsuranceController(CarInsuranceService carInsuranceService) =>
         _carInsuranceService = carInsuranceService;
-
 
     [HttpGet]
     public async Task<List<Insurance>> Get() =>
