@@ -1,10 +1,8 @@
 ﻿namespace CarInsurance.Core.Models.CarInsurance;
 
-public class Customer
+public class Customer : Document
 {
     public string Name { get; set; } = null!;
-
-    public string ID { get; set; } = null!;
 
     public DateTime ClientBirthDate { get; set; }
 

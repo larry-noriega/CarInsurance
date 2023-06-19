@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<CarInsuranceDBSettings>(
     builder.Configuration.GetSection("InsurancePoliciesDatabase") );
 
-builder.Services.AddSingleton<CarInsuranceService>();
+builder.Services.AddSingleton<CarPoliciesService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(
@@ -59,6 +59,7 @@ builder.Services.AddScoped<ICarInsuranceRepository, CarInsuranceRepository>();
 
 // sigleton for settings
 builder.Services.AddTransient<ICarInsuranceContext, CarInsuranceContext>();
+builder.Services.AddTransient<ICarPolicyContext, CarPolicyContext>();
 
 var app = builder.Build();
 
@@ -66,16 +67,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
 }
+    app.UseSwaggerUI();
 
 // configure HTTP request pipeline
 {
     // global cors policy
-    app.UseCors(x => x
-      .AllowAnyOrigin()
-      .AllowAnyMethod()
-      .AllowAnyHeader());
+    app.UseCors( cors => cors.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader() );
 
     // custom JWT auth middleware
     app.UseMiddleware<JwtMiddleware>();
