@@ -60,7 +60,6 @@ builder.Services.AddScoped<ICarInsuranceRepository, CarInsuranceRepository>();
 // sigleton for settings
 builder.Services.AddTransient<ICarInsuranceContext, CarInsuranceContext>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
