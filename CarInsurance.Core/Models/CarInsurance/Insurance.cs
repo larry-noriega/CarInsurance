@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson;
+﻿using CarInsurance.Core.Models.CarInsurance;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace CarInsurance.Core.Models.CarPolicy;
 
-public class CarPolicyModel
+public class Insurance
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]

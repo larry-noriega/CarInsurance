@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<CarInsuranceDBSettings>(
     builder.Configuration.GetSection("InsurancePoliciesDatabase") );
 
-builder.Services.AddSingleton<CarPoliciesService>();
+builder.Services.AddSingleton<CarInsuranceService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(

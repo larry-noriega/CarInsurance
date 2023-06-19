@@ -6,5 +6,5 @@ public class CarInsuranceDBSettings
 
     public string DatabaseName { get; set; } = null!;
 
-    public string CarPolicyCollectionName { get; set; } = null!;
+    public string CarInsuranceCollectionName { get; set; } = null!;
 }

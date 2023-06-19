@@ -1,4 +1,4 @@
-﻿namespace CarInsurance.Core.Models.CarPolicy;
+﻿namespace CarInsurance.Core.Models.CarInsurance;
 
 public class Car
 {
