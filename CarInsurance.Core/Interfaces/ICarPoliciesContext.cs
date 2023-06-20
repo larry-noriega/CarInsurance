@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace CarInsurance.Core.Interfaces;
 
-public interface ICarPolicyContext
+public interface ICarPoliciesContext
 {
-    IMongoCollection<Policy> CarInsurance { get; }
+    IMongoCollection<Policy> CarPolicies { get; }
 }

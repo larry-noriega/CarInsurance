@@ -4,28 +4,25 @@ using MongoDB.Driver;
 
 namespace CarInsurance.Core.Services;
 
-public class CarPoliciesService
+public class CarPoliciesService : ICarPoliciesService
 {
-    private readonly ICarPolicyContext _context;
+    private readonly ICarPoliciesContext _context;
 
-    public CarPoliciesService(ICarPolicyContext context)
+    public CarPoliciesService(ICarPoliciesContext context)
     {
         _context = context;
-    }   
+    }
 
-    public void Initialize()
+    public void InitializeDB()
     {
         RemovePolicies();
 
         CreatePolicies(InitialData());
     }
 
-    private void RemovePolicies() => _context.CarInsurance.DeleteMany(_ => true);
-    private void CreatePolicies(List<Policy> policies) => _context.CarInsurance.InsertMany(policies);
-
     public static List<Policy> InitialData()
     {
-        int creationDate = Random.Shared.Next(-10, 9);
+        int creationDate = Random.Shared.Next(-10, 0);
 
         return new List<Policy>()
         {
@@ -62,4 +59,6 @@ public class CarPoliciesService
         };
     }
 
+    private void RemovePolicies() => _context.CarPolicies.DeleteMany(_ => true);
+    private void CreatePolicies(List<Policy> policies) => _context.CarPolicies.InsertMany(policies);
 }

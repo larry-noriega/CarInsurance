@@ -1,7 +1,6 @@
 ﻿using CarInsurance.API.Middleware.AuthJWT.Helpers;
 using CarInsurance.Core.Interfaces;
 using CarInsurance.Core.Models.CarInsurance;
-using CarInsurance.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarInsurance.API.Controllers;
@@ -11,16 +10,9 @@ namespace CarInsurance.API.Controllers;
 [Route("api/[controller]")]
 public class CarInsuranceController : Controller
 {
-    private readonly CarPoliciesService _carPoliciesService;
     private readonly ICarInsuranceRepository _repository;
 
-    public CarInsuranceController(ICarInsuranceRepository repository, CarPoliciesService carPoliciesService)
-    {
-        _repository = repository;
-        _carPoliciesService = carPoliciesService;
-
-        carPoliciesService.Initialize();
-    }
+    public CarInsuranceController(ICarInsuranceRepository repository) => _repository = repository;
 
     [HttpGet]
     public async Task<List<Insurance>> Get() =>

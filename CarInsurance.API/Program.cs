@@ -5,6 +5,7 @@ using CarInsurance.Core.Models.Settings.Auth;
 using CarInsurance.Core.Services;
 using CarInsurance.Infrastructure.Data;
 using CarInsurance.Infrastructure.Data.Context;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<CarInsuranceDBSettings>(
     builder.Configuration.GetSection("InsurancePoliciesDatabase") );
-
-builder.Services.AddSingleton<CarPoliciesService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(
@@ -59,7 +58,11 @@ builder.Services.AddScoped<ICarInsuranceRepository, CarInsuranceRepository>();
 
 // sigleton for settings
 builder.Services.AddTransient<ICarInsuranceContext, CarInsuranceContext>();
-builder.Services.AddTransient<ICarPolicyContext, CarPolicyContext>();
+builder.Services.AddTransient<ICarPoliciesContext, CarPolicyContext>();
+
+// add Services
+builder.Services.AddSingleton<ICarPoliciesService, CarPoliciesService>();
+builder.Services.AddSingleton<IUserService, UserService>();
 
 var app = builder.Build();
 
@@ -86,5 +89,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//initialize Database
+var tokenService = app.Services.GetRequiredService<ICarPoliciesService>();
+tokenService.InitializeDB();
 
 app.Run();

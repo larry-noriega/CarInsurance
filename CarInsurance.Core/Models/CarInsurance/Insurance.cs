@@ -1,4 +1,6 @@
-﻿namespace CarInsurance.Core.Models.CarInsurance;
+﻿using CarInsurance.Core.Models.CarPolicy;
+
+namespace CarInsurance.Core.Models.CarInsurance;
 
 public class Insurance : Document
 {
@@ -12,5 +14,19 @@ public class Insurance : Document
 
     public Car Car { get; set; } = null!;
 
-    public DateTime InsuranceCreationDate { get; set; }
+    public Policy Policy { get; set; } = null!;    
+
+    private DateTime creationDate;
+    public DateTime CreationDate
+{
+        get
+        {
+            creationDate = DateTime.Now;
+
+            return creationDate;
+        }
+        set => creationDate = value;
+    }
+
+
 }

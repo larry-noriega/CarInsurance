@@ -6,15 +6,15 @@ public class Policy : Document
 
     public DateTime CreationDate { get; set; }
 
-    private DateTime creationDate;
+    private DateTime expirationDate;
     public DateTime ExpirationDate
     {
         get
         {
-            creationDate = CreationDate.AddMonths(Random.Shared.Next(5, 9));
+            expirationDate = CreationDate.AddMonths(Random.Shared.Next(5, 9));
 
-            return creationDate;
+            return expirationDate;
         }
-        set => creationDate = value;
+        set => expirationDate = value;
     }
 }
