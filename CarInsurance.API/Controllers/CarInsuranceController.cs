@@ -1,9 +1,7 @@
-﻿using CarInsurance.API.Middleware.AuthJWT.Helpers;
-using CarInsurance.Core.Interfaces;
+﻿using CarInsurance.Core.Interfaces;
 using CarInsurance.Core.Models.CarInsurance;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Net;
 
 namespace CarInsurance.API.Controllers;
 

@@ -1,6 +1,8 @@
-﻿namespace CarInsurance.Core.Models.CarInsurance;
+﻿using CarInsurance.Core.Interfaces;
 
-public class Customer : Document
+namespace CarInsurance.Core.Models.CarInsurance;
+
+public class Customer : IDocument
 {
     public string Name { get; set; } = null!;
 

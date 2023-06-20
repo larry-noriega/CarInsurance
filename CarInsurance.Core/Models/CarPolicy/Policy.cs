@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CarInsurance.Core.Interfaces;
 
 namespace CarInsurance.Core.Models.CarPolicy;
 
-public class Policy : Document
+public class Policy : IDocument
 {
     [Required]
     public string Name { get; set; }

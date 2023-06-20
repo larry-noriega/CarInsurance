@@ -1,11 +1,10 @@
-﻿using CarInsurance.Core.Models.CarPolicy;
+﻿using CarInsurance.Core.Interfaces;
+using CarInsurance.Core.Models.CarPolicy;
 
 namespace CarInsurance.Core.Models.CarInsurance;
 
 public class Insurance : Document
 {
-    public decimal Number { get; set; }
-
     public decimal Amount { get; set; }
 
     public string[] Coverage { get; set; } = null!;

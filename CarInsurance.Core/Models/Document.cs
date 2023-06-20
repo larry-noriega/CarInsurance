@@ -1,11 +1,21 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using CarInsurance.Core.Interfaces;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
 namespace CarInsurance.Core.Models;
 
-public class Document
+public class Document : IDocument
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
+    private Guid number;
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
+    public Guid Number
+    {
+        get
+        {
+            number = Guid.NewGuid();
+
+            return number;
+        }
+        set => number = value;
+    }
 }
