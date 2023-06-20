@@ -4,7 +4,9 @@ public class Customer : Document
 {
     public string Name { get; set; } = null!;
 
-    public DateTime ClientBirthDate { get; set; }
+    public decimal DocumentID { get; set; }
+
+    public DateTime BirthDate { get; set; }
 
     public string City { get; set; } = null!;
 

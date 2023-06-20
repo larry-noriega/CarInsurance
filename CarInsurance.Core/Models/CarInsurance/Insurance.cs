@@ -18,15 +18,13 @@ public class Insurance : Document
 
     private DateTime creationDate;
     public DateTime CreationDate
-{
+    {
         get
         {
-            creationDate = DateTime.Now;
+            creationDate = DateTime.Today;
 
             return creationDate;
         }
         set => creationDate = value;
     }
-
-
 }

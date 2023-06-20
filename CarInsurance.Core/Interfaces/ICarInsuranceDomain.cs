@@ -4,5 +4,5 @@ namespace CarInsurance.Core.Interfaces;
 
 public interface ICarInsuranceDomain
 {
-    Task<bool?> CheckAbility(Insurance carInsurance);
+    Task<bool?> CreateAsync(Insurance carInsurance);
 }

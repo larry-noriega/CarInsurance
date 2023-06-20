@@ -1,8 +1,11 @@
-﻿namespace CarInsurance.Core.Models.CarPolicy;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CarInsurance.Core.Models.CarPolicy;
 
 public class Policy : Document
 {
-    public string Name { get; set; } = null!;
+    [Required]
+    public string Name { get; set; }
 
     public DateTime CreationDate { get; set; }
 
