@@ -21,7 +21,7 @@ namespace CarInsurance.Domain.CarInsurance
         {
             Policy? policy = await _carPoliciesRepository.GetAsync(doc => doc.Name == carInsurance.Policy.Name);
 
-                Debug.Assert(policy?.Amount == 0);
+            Debug.Assert(policy?.Amount != 0);
 
             if (policy is null)
                 return null;
@@ -31,6 +31,8 @@ namespace CarInsurance.Domain.CarInsurance
 
             carInsurance.Policy = new() {
                 Id = policy.Id,
+                Name = policy.Name,
+                Coverage = policy.Coverage,
                 Amount = policy.Amount,
                 CreationDate = policy.CreationDate,
                 ExpirationDate= policy.ExpirationDate,

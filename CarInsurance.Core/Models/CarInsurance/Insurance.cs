@@ -4,10 +4,6 @@ namespace CarInsurance.Core.Models.CarInsurance;
 
 public class Insurance : Document
 {
-    public double Amount { get; set; }
-
-    public string[] Coverage { get; set; } = null!;
-
     public Customer Customer { get; set; } = null!;
 
     public Car Car { get; set; } = null!;
