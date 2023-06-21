@@ -19,9 +19,9 @@ namespace CarInsurance.Domain.CarInsurance
 
         public async Task<bool?> CreateAsync(Insurance carInsurance)
         {
-            var hosted = carInsurance;
-
             Policy? policy = await _carPoliciesRepository.GetAsync(doc => doc.Name == carInsurance.Policy.Name);
+
+                Debug.Assert(policy?.Amount == 0);
 
             if (policy is null)
                 return null;
@@ -30,6 +30,7 @@ namespace CarInsurance.Domain.CarInsurance
                 return false;
 
             carInsurance.Policy.Id = policy.Id;
+            carInsurance.Policy.Amount = policy.Amount;
             carInsurance.Policy.CreationDate = policy.CreationDate;
             carInsurance.Policy.ExpirationDate= policy.ExpirationDate;
 
