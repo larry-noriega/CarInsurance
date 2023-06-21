@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace CarInsurance.API.Controllers;
 
-//[Authorize]
+[Authorize]
 [Controller]
 [Route("api/[controller]")]
 public class CarInsuranceController : Controller
