@@ -7,7 +7,7 @@ using MongoDB.Driver;
 namespace CarInsurance.Infrastructure.Data.Context;
 
 
-public class CarPolicyContext : ICarPolicyContext
+public class CarPolicyContext : ICarPoliciesContext
 {
     private readonly IMongoDatabase _carInsuranceCollection;
 
@@ -18,7 +18,7 @@ public class CarPolicyContext : ICarPolicyContext
         _carInsuranceCollection = mongoClient.GetDatabase(options.Value.DatabaseName);
     }
 
-    public IMongoCollection<Policy> CarInsurance => _carInsuranceCollection.GetCollection<Policy>("CarPolicies");
+    public IMongoCollection<Policy> CarPolicies => _carInsuranceCollection.GetCollection<Policy>("CarPolicies");
    
 }
 

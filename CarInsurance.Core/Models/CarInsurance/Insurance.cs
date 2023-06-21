@@ -1,10 +1,10 @@
-﻿namespace CarInsurance.Core.Models.CarInsurance;
+﻿using CarInsurance.Core.Models.CarPolicy;
+
+namespace CarInsurance.Core.Models.CarInsurance;
 
 public class Insurance : Document
 {
-    public decimal Number { get; set; }
-
-    public decimal Amount { get; set; }
+    public double Amount { get; set; }
 
     public string[] Coverage { get; set; } = null!;
 
@@ -12,5 +12,17 @@ public class Insurance : Document
 
     public Car Car { get; set; } = null!;
 
-    public DateTime InsuranceCreationDate { get; set; }
+    public Policy Policy { get; set; } = null!;    
+
+    private DateTime creationDate;
+    public DateTime CreationDate
+    {
+        get
+        {
+            creationDate = DateTime.Today;
+
+            return creationDate;
+        }
+        set => creationDate = value;
+    }   
 }

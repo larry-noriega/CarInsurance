@@ -1,10 +1,14 @@
-﻿namespace CarInsurance.Core.Models.CarInsurance;
+﻿using CarInsurance.Core.Interfaces;
 
-public class Customer : Document
+namespace CarInsurance.Core.Models.CarInsurance;
+
+public class Customer : IDocument
 {
     public string Name { get; set; } = null!;
 
-    public DateTime ClientBirthDate { get; set; }
+    public decimal DocumentID { get; set; }
+
+    public DateTime BirthDate { get; set; }
 
     public string City { get; set; } = null!;
 

@@ -11,7 +11,7 @@ public class CarInsuranceRepository : ICarInsuranceRepository
     public CarInsuranceRepository(ICarInsuranceContext context)
     {
         _context = context;
-    }
+    }    
 
     public async Task<List<Insurance>> GetAsync() => 
         await _context.CarInsurance.Find(_ => true).ToListAsync();
