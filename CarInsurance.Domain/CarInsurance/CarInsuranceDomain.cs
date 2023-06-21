@@ -29,16 +29,14 @@ namespace CarInsurance.Domain.CarInsurance
             if (policy.ExpirationDate < carInsurance.CreationDate)
                 return false;
 
-            carInsurance.Policy = new() {
-                Id = policy.Id,
-                Amount = policy.Amount,
-                CreationDate = policy.CreationDate,
-                ExpirationDate= policy.ExpirationDate            
-            };
+            carInsurance.Policy.Id = policy.Id;
+            carInsurance.Policy.Amount = policy.Amount;
+            carInsurance.Policy.CreationDate = policy.CreationDate;
+            carInsurance.Policy.ExpirationDate= policy.ExpirationDate;
 
             await _carInsuranceRepository.CreateAsync(carInsurance);
 
-            return true;
+            return true; //Insurance created.
         }
     }
 }
