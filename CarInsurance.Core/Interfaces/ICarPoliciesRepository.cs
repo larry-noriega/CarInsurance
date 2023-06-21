@@ -5,9 +5,8 @@ namespace CarInsurance.Core.Interfaces;
 
 public interface ICarPoliciesRepository
 {
-    Task CreateAsync(Policy carPolicy);
     Task<List<Policy>> GetAsync();
     Task<Policy?> GetAsync(Expression<Func<Policy, bool>> filter);
-    Task RemoveAsync(string id);
-    Task UpdateAsync(string id, Policy updatedCarPolicy);    
+    void CreatePolicies(List<Policy> policies);
+    void RemovePolicies();
 }

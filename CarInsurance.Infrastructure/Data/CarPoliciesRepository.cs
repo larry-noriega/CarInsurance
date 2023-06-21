@@ -20,13 +20,8 @@ public class CarPoliciesRepository : ICarPoliciesRepository
     public async Task<Policy?> GetAsync(Expression<Func<Policy, bool>> filter) =>
        await _context.CarPolicies.Find(filter).FirstOrDefaultAsync();
 
+    public void RemovePolicies() => _context.CarPolicies.DeleteMany(_ => true);
 
-    public async Task CreateAsync(Policy carPolicy) =>
-        await _context.CarPolicies.InsertOneAsync(carPolicy);
+    public void CreatePolicies(List<Policy> policies) => _context.CarPolicies.InsertMany(policies);
 
-    public async Task UpdateAsync(string id, Policy updatedCarPolicy) =>
-        await _context.CarPolicies.ReplaceOneAsync(doc => doc.Id == id, updatedCarPolicy);
-
-    public async Task RemoveAsync(string id) =>
-        await _context.CarPolicies.DeleteOneAsync(doc => doc.Id == id);    
 }

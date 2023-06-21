@@ -6,18 +6,18 @@ namespace CarInsurance.Core.Services;
 
 public class CarPoliciesService : ICarPoliciesService
 {
-    private readonly ICarPoliciesContext _context;
+    private readonly ICarPoliciesRepository _repository;
 
-    public CarPoliciesService(ICarPoliciesContext context)
+    public CarPoliciesService(ICarPoliciesRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
 
     public void InitializeDB()
     {
-        RemovePolicies();
+        _repository.RemovePolicies();
 
-        CreatePolicies(InitialData());
+        _repository.CreatePolicies(InitialData());
     }
 
     public static List<Policy> InitialData()
@@ -72,10 +72,7 @@ public class CarPoliciesService : ICarPoliciesService
                 CreationDate = DateTime.Today.AddMonths(creationDate)
             }
         };
-    }
-
-    private void RemovePolicies() => _context.CarPolicies.DeleteMany(_ => true);
-    private void CreatePolicies(List<Policy> policies) => _context.CarPolicies.InsertMany(policies);
+    }   
 
     public static List<T> GetRandomElements<T>(List<T> list, int elementsCount)
     {
