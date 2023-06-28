@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using CarInsurance.Core.Interfaces;
+﻿using CarInsurance.Core.Interfaces;
 using CarInsurance.Core.Models.Settings.Auth;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CarInsurance.API.Controllers;
 
@@ -27,7 +26,6 @@ public class UsersController : ControllerBase
         return Ok(response);
     }
 
-    [Authorize]
     [HttpGet]
     public IActionResult GetAll()
     {
